@@ -23,3 +23,17 @@ IGNORE 1 ROWS;
 
 CREATE DATABASE sneakers;
 USE sneakers;
+
+CREATE TABLE sneakers_table (
+  Date DATE,
+  ProductName VARCHAR(100),
+  ProductType VARCHAR(100),
+  Brand VARCHAR(50),
+  Gender VARCHAR(20),
+  Category VARCHAR(50),
+  Country VARCHAR(50),
+  Quantity INT,
+  UnitPrice DECIMAL(10,2),
+  Amount DECIMAL(10,2),
+  PaymentMode VARCHAR(50)
+);
