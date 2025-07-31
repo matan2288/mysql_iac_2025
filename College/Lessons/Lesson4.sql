@@ -3,10 +3,13 @@
 --* Create table {tablename} *-- 
   -- CREATE
     -- PRIMARY KEY > A primary key uniquely identifies each row in a table.
-    CREATE TABLE book BookId varchar(10),
+    CREATE TABLE book (
+      BookId varchar(10),
       BookTitle varchar(10),
       language varchar(10),
-      primary key varchar(10);
+      primary key (BookId)
+    );
+
 
 --* FORGEIN KEY -> A foreign key is a column that links to the primary key of another table to enforce data relationships.
 --* PRIMARY KEY ->
