@@ -1,3 +1,5 @@
+-- מתן אלמליח 205625221
+
 use classicmodels;
 
 -- 1
@@ -38,14 +40,33 @@ WHERE (
 
 
 -- 4
+SELECT DISTINCT c.customerName
+FROM customers c
+JOIN orders o ON c.customerNumber = o.customerNumber
+JOIN orderdetails od ON o.orderNumber = od.orderNumber
+WHERE od.priceEach > 50;
 
+SELECT DISTINCT c.customerName
+FROM customers c
+JOIN orders o ON c.customerNumber = o.customerNumber
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM orderdetails od
+  WHERE od.orderNumber = o.orderNumber
+    AND od.priceEach <= 50
+);
 
 
 -- 5
+SELECT COUNT(*) AS count_starts_with_Ch
+FROM orders
+WHERE comments LIKE 'Ch%';
 
+SELECT COUNT(*) AS count_not_starting_with_Ch
+FROM orders
+WHERE comments IS NOT NULL AND comments NOT LIKE 'Ch%';
 
 -- 6 
-
 SELECT distinct customerNumber
 from orders, orderdetails
 WHERE orderdetails.orderNumber = orders.orderNumber 
