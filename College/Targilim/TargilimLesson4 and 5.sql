@@ -1,3 +1,5 @@
+-- מתן אלמליח 205625221
+
 --* CREATE Exercise 1
   --Part 1
   CREATE TABLE items (
@@ -29,8 +31,28 @@
   );
 
 --* Exercise 3
+  -- Part 1
+  CREATE TABLE ProductionItems (
+    productCode VARCHAR(20),
+    itemCode VARCHAR(20),
+    description TEXT,
+    productionCost DECIMAL(10, 2),
+    customer_id INT,
+    FOREIGN KEY (productCode) REFERENCES products(productCode),
+    FOREIGN KEY (itemCode) REFERENCES items(itemCode)
+  );
 
-
+  -- Part 2
+  CREATE TABLE ProductionItems (
+    productCode VARCHAR(20),
+    itemCode VARCHAR(20),
+    description TEXT,
+    productionCost DECIMAL(10, 2),
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customerNumber)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+  );
 
 --* Exercise 4
   -- Part 1
@@ -65,6 +87,8 @@
         JOIN employees e ON c.salesRepEmployeeNumber = e.employeeNumber
         WHERE e.firstName = 'Leslie' AND e.lastName = 'Jennings';
 
+
+
 --* Exercise 5
 -- Part 1
 create view sales_man as 
@@ -94,24 +118,24 @@ WHERE e.employeeNumber = 1621;
 -- Part 1
 SELECT * 
 FROM employees 
-WHERE firstName LIKE '%Nir%';
+WHERE firstName LIKE '%matan%';
 
 -- Part 2
 INSERT INTO employees
-VALUES (222222, 'Regev2', 'Nir2', '123456', 'regev.nir@iac.ac.il', '1', 1002, 'VP DB');
+VALUES (222222, 'matan2', 'matan2', '123456', 'matan@test.com', '1', 1002, 'mechanic');
 
 
 -- Part 3
 INSERT INTO employees
 VALUES 
-(33333, 'Regev3', 'Nir3', '123456', 'regev.nir@iac.ac.il', '1', 1002, 'VP DB'),
-(4444, 'Regev4', 'Nir4', '123456', 'regev.nir@iac.ac.il', '1', 1002, 'VP DB');
+(33333, 'matan3', 'matan3', '123456', 'matan@test.com', '1', 1002, 'mechanic'),
+(4444, 'matan4', 'matan4', '123456', 'matan@test.com', '1', 1002, 'mechanic');
 
 -- Part 4
 INSERT INTO customers
 VALUES 
-(33333, 'Regev3', 'Nir3', '123456', 'regev.nir@iac.ac.il', '1', 1002, 'VP DB'),
-(4444, 'Regev4', 'Nir4', '123456', 'regev.nir@iac.ac.il', '1', 1002, 'VP DB');
+(33333, 'matan3', 'matan3', '123456', 'matan@test.com', '1', 1002, 'mechanic'),
+(4444, 'matan4', 'matan4', '123456', 'matan@test.com', '1', 1002, 'mechanic');
 
 -- Part 5
 UPDATE employees
