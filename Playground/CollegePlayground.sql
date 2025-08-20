@@ -92,4 +92,6 @@ amount / avg(amount) over ( partition by customerNumber ) as relative_price_from
 from payments;
 
 
+
+
 select * from payments
