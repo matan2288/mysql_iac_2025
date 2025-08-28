@@ -92,6 +92,68 @@ amount / avg(amount) over ( partition by customerNumber ) as relative_price_from
 from payments;
 
 
+select customerNumber, amount,
+lag(amount) over (partition by customerNumber order by paymentDate) as lag_price_amount
+from payments;
+
+select customerNumber, amount, paymentDate,
+amount / lag(amount) over (partition by customerNumber order by paymentDate asc) as test
+from payments;
 
 
-select * from payments
+
+select * from payments;
+select * from productLines;
+
+
+
+-- Create tables
+create table test_table (
+ test varchar(50)
+)
+
+-- cascade, update, foreign key, primary key
+
+Create table Book (
+    ArtistId 	varchar (10),
+	  ArtistTitle 	varchar (20),
+	  language 	varchar (10),
+	  primary key (ArtistId)
+  );
+
+
+Create table Print
+  (ArtistId	varchar (10),
+   PrintNum	varchar (20),
+   cover		varchar (5),
+   NumOfPages	integer,
+   PYear	numeric (4,0) ,
+  primary key (ArtistId, PrintNum),
+  FOREIGN KEY (ArtistId)
+);
+
+
+
+alter table Print add constraint test
+  foreign key(ArtistId) references Book(ArtistId) on update cascade;
+  
+alter table Print
+rename column cover2 to myCover; 
+
+alter table Print
+modify column myCover varchar(50);
+
+
+insert into items (itemCode, description, retailCost, supplier)
+values (1231223, 'description', 40.3, 'supp'), 
+        (31232131, 'descri32ption', 44.3, 'supp3'),
+        (312321131, 'description3', 41.3, 'supp3');
+
+select * from items
+
+alter Table Print
+drop column ArtistId
+
+alter Table Print
+add column description varchar(50)
+
